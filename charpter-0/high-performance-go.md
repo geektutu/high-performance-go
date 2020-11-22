@@ -1,6 +1,5 @@
 ---
-title: 关于本书
-seo_title: Go 语言高性能编程
+title: Go 语言高性能编程
 date: 2020-11-06 16:00:00
 description: Go 语言/golang 高性能编程，Go 语言进阶教程，Go 语言高性能编程(high performance go)。详细介绍如何测试/评估 Go 代码的性能，内容包括使用 testing 库进行基准测试(benchmark)，性能分析(profiling) 编译优化(compiler optimisations)，内存管理(memory management)和垃圾回收(garbage collect)、pprof 等内容。同时也介绍了使用 Go 语言如何写出高性能的程序和应用，包括不限于 Go 语言标准库、第三方库的使用方式和最佳实践。
 tags:
@@ -19,7 +18,6 @@ book_title: 关于本书
 ---
 
 ![high performance with go](high-performance-go/high-performance-go.jpg)
-
 
 ## 这个系列的由来
 
