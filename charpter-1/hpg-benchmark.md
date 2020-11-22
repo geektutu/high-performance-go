@@ -16,6 +16,7 @@ image: post/hpg-benchmark/benchmark.jpg
 github: https://github.com/geektutu/high-performance-go
 book: Go 语言高性能编程
 book_title: benchmark 基准测试
+github_page: https://github.com/geektutu/high-performance-go/blob/master/charpter-1/hpg-benchmark.md
 ---
 
 ![benchmark & profiling - high performance with go](hpg-benchmark/benchmark.jpg)

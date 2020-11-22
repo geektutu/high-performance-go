@@ -16,6 +16,7 @@ image: post/hpg-benchmark/benchmark.jpg
 github: https://github.com/geektutu/high-performance-go
 book: Go 语言高性能编程
 book_title: pprof 性能分析
+github_page: https://github.com/geektutu/high-performance-go/blob/master/charpter-1/hpg-pprof.md
 ---
 
 ![benchmark & profiling - high performance with go](hpg-benchmark/benchmark.jpg)

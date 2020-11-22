@@ -15,6 +15,7 @@ image: post/high-performance-go/high-performance-go.jpg
 github: https://github.com/geektutu/high-performance-go
 book: Go 语言高性能编程
 book_title: 关于本书
+github_page: https://github.com/geektutu/high-performance-go/blob/master/charpter-0/high-performance-go.md
 ---
 
 ![high performance with go](high-performance-go/high-performance-go.jpg)
