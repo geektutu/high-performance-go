@@ -1,11 +1,11 @@
 # Go 语言高性能编程
 
-[![high performance with go](charpter-0/high-performance-go/high-performance-go.jpg)](https://geektutu.com/post/high-performace-go.html)
+[![high performance with go](charpter-0/high-performance-go/high-performance-go.jpg)](https://geektutu.com/post/high-performance-go.html)
 
 ## 目录
 
 - 序言
-    - [关于本书](https://geektutu.com/post/high-performace-go.html)
+    - [关于本书](https://geektutu.com/post/high-performance-go.html)
 
 - 第一章 性能分析
     - [benchmark 基准测试](https://geektutu.com/post/hpg-benchmark.html)
