@@ -7,7 +7,7 @@ tags:
 - Go语言高性能编程
 nav: 高性能编程
 categories:
-- 性能分析
+- 常用数据结构
 keywords:
 - golang
 - 字符串拼接
@@ -262,3 +262,8 @@ func (b *Builder) String() string {
 `bytes.Buffer` 的注释中还特意提到了：
 
 > To build strings more efficiently, see the strings.Builder type.
+
+## 附 推荐与参考
+
+- [Go 语言笔试面试题汇总](https://geektutu.com/post/qa-golang.html)
+- [七天用Go从零实现系列](https://geektutu.com/post/gee.html)
