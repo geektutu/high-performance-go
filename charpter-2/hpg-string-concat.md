@@ -115,9 +115,9 @@ func preByteConcat(n int, str string) string {
 }
 ```
 
-> `make([]byte, 0, n*m)` 第二个参数是长度，空切片长度为 0，第三个参数是容量(cap)，切片创建时，将预分配 cap 大小的内存。
+> make([]byte, 0, n*len(str)) 第二个参数是长度，第三个参数是容量(cap)，切片创建时，将预分配 cap 大小的内存。
 
-## 1.2 benchmark 性能比拼
+### 1.2 benchmark 性能比拼
 
 每个 benchmark 用例中，生成了一个长度为 10 的字符串，并拼接 1w 次。
 
@@ -158,7 +158,7 @@ ok      example 8.627s
 
 `strings.Builder`、`bytes.Buffer` 和 `[]byte` 的性能差距不大，而且消耗的内存也十分接近，性能最好且消耗内存最小的是 `preByteConcat`，这种方式预分配了内存，在字符串拼接的过程中，不需要进行字符串的拷贝，也不需要分配新的内存，因此性能最好，且内存消耗最小。
 
-## 1.3 建议
+### 1.3 建议
 
 综合易用性和性能，一般推荐使用 `strings.Builder` 来拼接字符串。
 
@@ -190,7 +190,7 @@ BenchmarkPreByteConcat-8   17379    0.07 ms/op   0.2 MB/op       2 allocs/op
 
 ## 2 性能背后的原理
 
-## 2.1 比较 strings.Builder 和 `+`
+### 2.1 比较 strings.Builder 和 `+`
 
 `strings.Builder` 和 `+` 性能和内存消耗差距如此巨大，是因为两者的内存分配方式不一样。
 
@@ -233,7 +233,7 @@ ok      example 0.007s
 16 + 32 + 64 + ... + 122880 = 0.52 MB
 ```
 
-## 2.2 比较 strings.Builder 和 bytes.Buffer
+### 2.2 比较 strings.Builder 和 bytes.Buffer
 
 `strings.Builder` 和 `bytes.Buffer` 底层都是 `[]byte` 数组，但 `strings.Builder` 性能比 `bytes.Buffer` 略快约 10% 。一个比较重要的区别在于，`bytes.Buffer` 转化为字符串时重新申请了一块空间，存放生成的字符串变量，而 `strings.Builder` 直接将底层的 `[]byte` 转换成了字符串类型返回了回来。
 

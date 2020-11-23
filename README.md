@@ -12,7 +12,7 @@
     - [pprof 性能分析](https://geektutu.com/post/hpg-pprof.html)
 
 - 第二章 常用数据结构
-    - 字符串
+    - [字符串拼接性能及原理](https://geektutu.com/post/hpg-string-concat.html)
     - 切片
 
 - 第三章 并发编程
