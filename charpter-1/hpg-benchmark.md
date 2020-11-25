@@ -114,7 +114,7 @@ benchmark 用例的参数 `b *testing.B`，有个属性 `b.N` 表示这个用例
 BenchmarkFib-8               202           5980669 ns/op
 ```
 
-BenchmarkFib-8 中的 `-8` 与 `GOMAXPROCS` 一致，默认等于 CPU 核数。可以通过 `-cpu` 参数改变参与执行用例的 CPU 核数，`-cpu` 支持传入一个列表作为参数，例如：
+BenchmarkFib-8 中的 `-8` 即 `GOMAXPROCS`，默认等于 CPU 核数。可以通过 `-cpu` 参数改变 `GOMAXPROCS`，`-cpu` 支持传入一个列表作为参数，例如：
 
 ```bash
 $ go test -bench='Fib$' -cpu=2,4 .
@@ -247,7 +247,7 @@ ok      example 2.171s
 goos: darwin
 goarch: amd64
 pkg: example
-BenchmarkGenerateWithCap-8  43  24335658 ns/op  8003641 B/op          1 allocs/op
+BenchmarkGenerateWithCap-8  43  24335658 ns/op  8003641 B/op    1 allocs/op
 BenchmarkGenerate-8         33  30403687 ns/op  45188395 B/op  40 allocs/op
 PASS
 ok      example 2.121s
