@@ -13,7 +13,7 @@
 
 - 第二章 常用数据结构
     - [字符串拼接性能及原理](https://geektutu.com/post/hpg-string-concat.html)
-    - 切片
+    - [切片(slice)性能及陷阱](https://geektutu.com/post/hpg-slice.html)
 
 - 第三章 并发编程
 
