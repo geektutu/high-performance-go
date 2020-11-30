@@ -186,19 +186,19 @@ Go 语言在 Github 上的官方 wiki - [SliceTricks](https://github.com/golang/
 
 删除后，将空余的位置置空，有助于垃圾回收。
 
-### 2.7 Insert
+### 2.5 Insert
 
 ![hpg-slice](hpg-slice/insert.png)
 
 insert 和 append 类似。即在某个位置添加一个元素后，将该位置后面的元素再 append 回去。复杂度为 O(N)。因此，不适合大量随机插入的场景。
 
-### 2.8 Filter
+### 2.6 Filter
 
 ![hpg-slice](hpg-slice/filter_in_place.png)
 
 当原切片不会再被使用时，就地 filter 方式是比较推荐的，可以节省内存空间。
 
-### 2.9 Push
+### 2.7 Push
 
 ![hpg-slice](hpg-slice/push.png)
 
@@ -208,7 +208,7 @@ insert 和 append 类似。即在某个位置添加一个元素后，将该位�
 
 在头部追加元素，时间和空间复杂度均为 O(N)，不推荐。
 
-### 2.10 Pop
+### 2.8 Pop
 
 ![hpg-slice](hpg-slice/pop.png)
 
@@ -222,7 +222,7 @@ insert 和 append 类似。即在某个位置添加一个元素后，将该位�
 
 ### 3.1 大量内存得不到释放
 
-在已有切片的基础上进行切片，是不会创建新的底层数组的。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组。因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放。比较推荐的做法，使用 `copy` 替代 `re-slice`。
+在已有切片的基础上进行切片，不会创建新的底层数组。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组。因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放。比较推荐的做法，使用 `copy` 替代 `re-slice`。
 
 ```go
 func lastNumsBySlice(origin []int) []int {
@@ -255,11 +255,11 @@ func generateWithCap(n int) []int {
 	return nums
 }
 
-func printMem(b *testing.B) {
-	b.Helper()
+func printMem(t *testing.T) {
+	t.Helper()
 	var rtm runtime.MemStats
 	runtime.ReadMemStats(&rtm)
-	b.Logf("%.2f MB", float64(rtm.Alloc)/1024./1024.)
+	t.Logf("%.2f MB", float64(rtm.Alloc)/1024./1024.)
 }
 ```
 
@@ -302,7 +302,7 @@ PASS
 ok      example 0.601s
 ```
 
-结果差异非常明显，`lastNumsBySlice` 耗费了 100.14 MB 内存，也就是说，申请的 100 个 1 MB 大小的内存没有被回收。因为切片虽然只使用了最后 2 个元素，但是因为与原来 1M 的切片引用了相同的底层数组，底层数组得不到释放，因此，最终 100 MB 的内存始终得不到释放。而 `lastNumsByCopy` 仅消耗了 3.14 MB 的内存。这是因为，通过 `copy`，与原切片指向了不同的底层数组，当 origin 不再被引用后，内存会被垃圾回收(garbage collector, GC)。
+结果差异非常明显，`lastNumsBySlice` 耗费了 100.14 MB 内存，也就是说，申请的 100 个 1 MB 大小的内存没有被回收。因为切片虽然只使用了最后 2 个元素，但是因为与原来 1M 的切片引用了相同的底层数组，底层数组得不到释放，因此，最终 100 MB 的内存始终得不到释放。而 `lastNumsByCopy` 仅消耗了 3.14 MB 的内存。这是因为，通过 `copy`，指向了一个新的底层数组，当 origin 不再被引用后，内存会被垃圾回收(garbage collector, GC)。
 
 如果我们在循环中，显示地调用 `runtime.GC()`，效果会更加地明显：
 
