@@ -2,7 +2,7 @@
 title: for 和 range 的性能比较
 seo_title: Go 语言高性能编程
 date: 2020-12-01 23:00:00
-description: Go 语言/golang 高性能编程，Go 语言进阶教程，Go 语言高性能编程(high performance go)。本文比较了普通的 for 循环和 range 的性能，并解释了背后的原理。
+description: Go 语言/golang 高性能编程，Go 语言进阶教程，Go 语言高性能编程(high performance go)。本文比较了普通的 for 循环和 range 在不同场景下的性能，并解释了背后的原理：range 迭代时返回迭代值的拷贝，如果每个迭代值占用内存过大，性能将显著地低于 for，将元素类型改为指针，能够解决这一问题。
 tags:
 - Go语言高性能编程
 nav: 高性能编程
