@@ -337,5 +337,6 @@ ok      example 0.723s
 ## 附 推荐与参考
 
 - [Go Slices: usage and internals](https://blog.golang.org/slices-intro)
+- [Go 语言陷阱 - 数组和切片](https://geektutu.com/post/hpg-gotchas-array-slice.html)
 - [Go 语言笔试面试题汇总](https://geektutu.com/post/qa-golang.html)
 - [七天用Go从零实现系列](https://geektutu.com/post/gee.html)
