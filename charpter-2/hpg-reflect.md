@@ -1,5 +1,5 @@
 ---
-title: 反射(reflect)性能
+title: Go Reflect 提高反射性能
 seo_title: Go 语言高性能编程
 date: 2020-12-06 01:00:00
 description: Go 语言/golang 高性能编程，Go 语言进阶教程，Go 语言高性能编程(high performance go)。本文介绍了反射的使用场景，并测试了反射的性能，以及某些场景下的替代方式。
@@ -20,7 +20,7 @@ github_page: https://github.com/geektutu/high-performance-go/blob/master/charpte
 
 ![high performance go - data structure](hpg-string-concat/data-structure.jpg)
 
-## 1 反射的作用
+## 1 反射的用途
 
 标准库 [reflect](https://golang.org/pkg/reflect/) 为 Go 语言提供了运行时动态获取对象的类型和值以及动态创建对象的能力。反射可以帮助抽象和简化代码，提高开发效率。
 
