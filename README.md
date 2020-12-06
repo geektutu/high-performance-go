@@ -15,10 +15,14 @@
     - [字符串拼接性能及原理](https://geektutu.com/post/hpg-string-concat.html)
     - [切片(slice)性能及陷阱](https://geektutu.com/post/hpg-slice.html)
     - [for 和 range 的性能比较](https://geektutu.com/post/hpg-range.html)
+    - [反射(reflect)性能](https://geektutu.com/post/hpg-reflect.html)
 
 - 第三章 并发编程
 
 - 第四章 编译
+
+- 附录 Go 语言陷阱
+    - [数组和切片](https://geektutu.com/post/hpg-gotchas-array-slice.html)
 
 ## 基础入门
 
