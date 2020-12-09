@@ -77,6 +77,8 @@ type RW interface {
 	Read()
 }
 
+const cost = time.Microsecond
+
 type Lock struct {
 	count int
 	mu    sync.Mutex
@@ -85,13 +87,13 @@ type Lock struct {
 func (l *Lock) Write() {
 	l.mu.Lock()
 	l.count++
-	time.Sleep(time.Microsecond)
+	time.Sleep(cost)
 	l.mu.Unlock()
 }
 
 func (l *Lock) Read() {
 	l.mu.Lock()
-	time.Sleep(time.Microsecond)
+	time.Sleep(cost)
 	_ = l.count
 	l.mu.Unlock()
 }
@@ -108,14 +110,14 @@ type RWLock struct {
 func (l *RWLock) Write() {
 	l.mu.Lock()
 	l.count++
-	time.Sleep(time.Microsecond)
+	time.Sleep(cost)
 	l.mu.Unlock()
 }
 
 func (l *RWLock) Read() {
 	l.mu.RLock()
 	_ = l.count
-	time.Sleep(time.Microsecond)
+	time.Sleep(cost)
 	l.mu.RUnlock()
 }
 ```
@@ -183,6 +185,12 @@ ok      example/hpg-mutex       7.816s
 如果将单位读写操作的时间降为 0.1 微秒，结果如何呢？
 
 ```go
+const cost = time.Nanosecond * 100
+```
+
+测试结果如下：
+
+```go
 $ go test -bench .
 goos: darwin
 goarch: amd64
@@ -200,6 +208,12 @@ ok      example/hpg-mutex       7.957s
 单位读写操作时间下降后，读写锁的性能优势下降到 3 倍，这也是可以理解的，因加锁而阻塞的时间占比减小，互斥锁带来的损耗自然就减小了。
 
 将单位读写操作时间增加到 10 微秒的结果呢？
+
+```go
+const cost = time.Microsecond * 10
+```
+
+测试结果如下：
 
 ```bash
 goos: darwin

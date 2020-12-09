@@ -10,6 +10,11 @@ type RW interface {
 	Read()
 }
 
+const cost = time.Microsecond
+
+// const cost = time.Nanosecond * 100
+// const cost = time.Microsecond * 10
+
 type Lock struct {
 	count int
 	mu    sync.Mutex
@@ -18,13 +23,13 @@ type Lock struct {
 func (l *Lock) Write() {
 	l.mu.Lock()
 	l.count++
-	time.Sleep(time.Microsecond * 100)
+	time.Sleep(cost)
 	l.mu.Unlock()
 }
 
 func (l *Lock) Read() {
 	l.mu.Lock()
-	time.Sleep(time.Microsecond * 100)
+	time.Sleep(cost)
 	_ = l.count
 	l.mu.Unlock()
 }
@@ -37,13 +42,13 @@ type RWLock struct {
 func (l *RWLock) Write() {
 	l.mu.Lock()
 	l.count++
-	time.Sleep(time.Microsecond * 100)
+	time.Sleep(cost)
 	l.mu.Unlock()
 }
 
 func (l *RWLock) Read() {
 	l.mu.RLock()
 	_ = l.count
-	time.Sleep(time.Microsecond * 100)
+	time.Sleep(cost)
 	l.mu.RUnlock()
 }
