@@ -19,6 +19,7 @@
 
 - 第三章 并发编程
     - [读写锁和互斥锁的性能比较](https://geektutu.com/post/hpg-mutex.html)
+    - [如何退出协程(超时场景)](https://geektutu.com/post/hpg-timeout-goroutine.html)
 
 - 第四章 编译优化
     - [减小编译体积](https://geektutu.com/post/hpg-reduce-size.html)
