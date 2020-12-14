@@ -23,7 +23,7 @@ github_page: https://github.com/geektutu/high-performance-go/blob/master/charpte
 
 ## 1 读写锁和互斥锁的区别
 
-Go 语言标准库 `sync` 提供了 2 种锁，读写锁(sync.Mutex)和互斥锁(sync.RWMutex)。那这两种锁的区别是是什么呢？
+Go 语言标准库 `sync` 提供了 2 种锁，互斥锁(sync.Mutex)和读写锁(sync.RWMutex)。那这两种锁的区别是是什么呢？
 
 ### 1.1 互斥锁(sync.Mutex)
 
