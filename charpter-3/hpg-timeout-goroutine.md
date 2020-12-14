@@ -101,7 +101,7 @@ $ go test -run ^TestBadTimeout$ . -v
 
 ```go
 func timeoutWithBuffer(f func(chan bool)) error {
-	done := make(chan bool)
+	done := make(chan bool, 1)
 	go f(done)
 	select {
 	case <-done:
