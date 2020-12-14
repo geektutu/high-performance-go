@@ -44,8 +44,25 @@ for i, s := range words {
 ```
 
 - 变量 words 在循环开始前，仅会计算一次，如果在循环中修改切片的长度不会改变本次循环的次数。
-- 迭代过程中，每次迭代的值被赋值给变量 i 和 s，第二个参数 s 是可选的。
+- 迭代过程中，每次迭代的下标和值被赋值给变量 i 和 s，第二个参数 s 是可选的。
 - 针对 nil 切片，迭代次数为 0。
+
+range 还有另一种只遍历下标的写法，这种写法与 for 几乎没什么差异了。
+
+```go
+for i := range words {
+	fmt.Println(i, words[i])
+}
+```
+
+输出也是一样的：
+
+```bash
+0 Go
+1 语言
+2 高性能
+3 编程
+```
 
 ### 1.2 map
 
@@ -158,9 +175,20 @@ type Item struct {
 func BenchmarkForStruct(b *testing.B) {
 	var items [1024]Item
 	for i := 0; i < b.N; i++ {
-		len := len(items)
+		length := len(items)
 		var tmp int
-		for k := 0; k < len; k++ {
+		for k := 0; k < length; k++ {
+			tmp = items[k].id
+		}
+		_ = tmp
+	}
+}
+
+func BenchmarkRangeIndexStruct(b *testing.B) {
+	var items [1024]Item
+	for i := 0; i < b.N; i++ {
+		var tmp int
+		for k := range items {
 			tmp = items[k].id
 		}
 		_ = tmp
@@ -187,11 +215,13 @@ goos: darwin
 goarch: amd64
 pkg: example/hpg-range
 BenchmarkForStruct-8             3769580               324 ns/op
+BenchmarkRangeIndexStruct-8      3597555               330 ns/op
 BenchmarkRangeStruct-8              2194            467411 ns/op
 ```
 
+- 仅遍历下标的情况下，for 和 range 的性能几乎是一样的。
 - `items` 的每一个元素的类型是一个结构体类型 `Item`，`Item` 由两个字段构成，一个类型是 int，一个是类型是 `[4096]byte`，也就是说每个 `Item` 实例需要申请约 4KB 的内存。
-- 在这个例子中，for 的性能大约是 range 的 2000 倍。
+- 在这个例子中，for 的性能大约是 range (同时遍历下标和值) 的 2000 倍。
 
 ### 2.3 []int 和 []struct{} 的性能差异
 
@@ -221,9 +251,9 @@ fmt.Println(persons) // [{101} {102} {103}]
 func BenchmarkForPointer(b *testing.B) {
 	items := generateItems(1024)
 	for i := 0; i < b.N; i++ {
-		len := len(items)
+		length := len(items)
 		var tmp int
-		for k := 0; k < len; k++ {
+		for k := 0; k < length; k++ {
 			tmp = items[k].id
 		}
 		_ = tmp
@@ -256,7 +286,7 @@ BenchmarkRangePointer-8           264068              4194 ns/op
 
 ## 3 总结
 
-range 在迭代过程中返回的是迭代值的拷贝，如果每次迭代的元素的内存占用很低，那么 for 和 range 的性能几乎是一样，例如 `[]int`。但是如果迭代的元素内存占用较高，例如一个包含很多属性的 struct 结构体，那么 for 的性能将显著地高于 range，有时候甚至会有上千倍的性能差异。对于这种场景，建议使用 for 进行迭代，或者将迭代值改为指针后使用 range 迭代。
+range 在迭代过程中返回的是迭代值的拷贝，如果每次迭代的元素的内存占用很低，那么 for 和 range 的性能几乎是一样，例如 `[]int`。但是如果迭代的元素内存占用较高，例如一个包含很多属性的 struct 结构体，那么 for 的性能将显著地高于 range，有时候甚至会有上千倍的性能差异。对于这种场景，建议使用 for，如果使用 range，建议只迭代下标，通过下标访问迭代值，这种使用方式和 for 就没有区别了。如果想使用 range 同时迭代下标和值，则需要将切片/数组的元素改为指针，才能不影响性能。
 
 ## 附 推荐与参考
 

@@ -14,6 +14,9 @@ func TestRange(t *testing.T) {
 		// words = append(words, "test")
 		fmt.Println(i, s)
 	}
+	for i := range words {
+		fmt.Println(i, words[i])
+	}
 	// map
 	m := map[string]int{
 		"one":   1,
@@ -90,9 +93,20 @@ type Item struct {
 func BenchmarkForStruct(b *testing.B) {
 	var items [1024]Item
 	for i := 0; i < b.N; i++ {
-		len := len(items)
+		length := len(items)
 		var tmp int
-		for k := 0; k < len; k++ {
+		for k := 0; k < length; k++ {
+			tmp = items[k].id
+		}
+		_ = tmp
+	}
+}
+
+func BenchmarkRangeIndexStruct(b *testing.B) {
+	var items [1024]Item
+	for i := 0; i < b.N; i++ {
+		var tmp int
+		for k := range items {
 			tmp = items[k].id
 		}
 		_ = tmp
@@ -121,9 +135,9 @@ func generateItems(n int) []*Item {
 func BenchmarkForPointer(b *testing.B) {
 	items := generateItems(1024)
 	for i := 0; i < b.N; i++ {
-		len := len(items)
+		length := len(items)
 		var tmp int
-		for k := 0; k < len; k++ {
+		for k := 0; k < length; k++ {
 			tmp = items[k].id
 		}
 		_ = tmp
