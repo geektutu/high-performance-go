@@ -28,7 +28,7 @@ github_page: https://github.com/geektutu/high-performance-go/blob/master/charpte
 
 我们采用同一个测试工程来测试不同方式的效果。
 
-使用的测试工程如下，该程序启动了一个 RPC 服务，引用了 `log`、`net/http` 和 `net/log` 三个 package。
+使用的测试工程如下，该程序启动了一个 RPC 服务，引用了 `log`、`net/http` 和 `net/rpc` 三个 package。
 
 ```go
 package main
