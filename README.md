@@ -16,6 +16,7 @@
     - [切片(slice)性能及陷阱](https://geektutu.com/post/hpg-slice.html)
     - [for 和 range 的性能比较](https://geektutu.com/post/hpg-range.html)
     - [反射(reflect)性能](https://geektutu.com/post/hpg-reflect.html)
+    - [使用空结构体节省内存](https://geektutu.com/post/hpg-empty-struct.html)
 
 - 第三章 并发编程
     - [读写锁和互斥锁的性能比较](https://geektutu.com/post/hpg-mutex.html)
