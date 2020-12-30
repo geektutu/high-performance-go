@@ -27,6 +27,7 @@
 
 - 第四章 编译优化
     - [减小编译体积](https://geektutu.com/post/hpg-reduce-size.html)
+    - [逃逸分析对性能的影响](https://geektutu.com/post/hpg-escape-analysis.html)
 
 - 附录 Go 语言陷阱
     - [数组和切片](https://geektutu.com/post/hpg-gotchas-array-slice.html)
