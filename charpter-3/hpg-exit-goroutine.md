@@ -76,8 +76,8 @@ $ go test . -v
 - 创建 channel
 
 ```go
-ch := make(chan int) // 带缓冲区
-ch := make(chan int, 10) // 不带缓冲区，缓冲区满之前，即使没有接收方，发送方不阻塞
+ch := make(chan int) // 不带缓冲区
+ch := make(chan int, 10) // 带缓冲区，缓冲区满之前，即使没有接收方，发送方不阻塞
 ```
 
 - 关闭 channel
