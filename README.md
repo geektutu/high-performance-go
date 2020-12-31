@@ -24,6 +24,7 @@
     - [如何退出协程(超时场景)](https://geektutu.com/post/hpg-timeout-goroutine.html)
     - [如何退出协程(其他场景)](https://geektutu.com/post/hpg-exit-goroutine.html)
     - [控制协程的并发数量](https://geektutu.com/post/hpg-concurrency-control.html)
+    - [sync.Pool 复用对象](https://geektutu.com/post/hpg-sync-pool.html)
 
 - 第四章 编译优化
     - [减小编译体积](https://geektutu.com/post/hpg-reduce-size.html)
