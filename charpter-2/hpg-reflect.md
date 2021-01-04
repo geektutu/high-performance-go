@@ -199,11 +199,11 @@ ok      example/hpg-reflect     3.066s
 - 三种场景下，对象已经提前创建好，测试的均为给字段赋值所消耗的时间。
 - 普通的赋值操作，每次耗时约为 0.3 ns，通过下标找到对应的字段再赋值，每次耗时约为 30 ns，通过名称找到对应字段再赋值，每次耗时约为 300 ns。
 
-总结一下，对于一个普通的拥有 4 个字段的结构体 `Config` 来说，使用反射给每个字段赋值，相比直接赋值，性能劣化约 100 - 1000 倍。其中，`FiledByName` 的性能相比 `Filed` 劣化 10 倍。
+总结一下，对于一个普通的拥有 4 个字段的结构体 `Config` 来说，使用反射给每个字段赋值，相比直接赋值，性能劣化约 100 - 1000 倍。其中，`FieldByName` 的性能相比 `Field` 劣化 10 倍。
 
-### 3.3 FiledByName 和 Filed 性能差距
+### 3.3 FieldByName 和 Field 性能差距
 
-`FiledByName` 和 `Filed` 十倍的性能差距让我对 `FiledByName` 的内部实现比较好奇，打开源代码一探究竟：
+`FieldByName` 和 `Field` 十倍的性能差距让我对 `FieldByName` 的内部实现比较好奇，打开源代码一探究竟：
 
 - reflect/value.go
 
@@ -270,7 +270,7 @@ func (t *structType) FieldByName(name string) (f StructField, present bool) {
 
 ### 4.2 缓存
 
-在上面的例子中可以看到，`FieldByName` 相比于 `Filed` 有一个数量级的性能劣化。那在实际的应用中，就要避免直接调用 `FieldByName`。我们可以利用字典将 `Name` 和 `Index` 的映射缓存起来。避免每次反复查找，耗费大量的时间。
+在上面的例子中可以看到，`FieldByName` 相比于 `Field` 有一个数量级的性能劣化。那在实际的应用中，就要避免直接调用 `FieldByName`。我们可以利用字典将 `Name` 和 `Index` 的映射缓存起来。避免每次反复查找，耗费大量的时间。
 
 我们利用缓存，优化下刚才的测试用例：
 
