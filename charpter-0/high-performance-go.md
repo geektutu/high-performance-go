@@ -36,4 +36,3 @@ github_page: https://github.com/geektutu/high-performance-go/blob/master/charpte
 
 - [Go 语言笔试面试题汇总](https://geektutu.com/post/qa-golang.html)
 - [七天用Go从零实现系列](https://geektutu.com/post/gee.html)
-- [High Performance Go Workshop](https://dave.cheney.net/high-performance-go-workshop/dotgo-paris.html)
