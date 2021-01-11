@@ -2,6 +2,12 @@
 
 [![high performance with go](charpter-0/high-performance-go/high-performance-go.jpg)](https://geektutu.com/post/high-performance-go.html)
 
+## 订阅
+
+最新动态可以关注：知乎 [Go语言](https://www.zhihu.com/people/gzdaijie) 或微博 [极客兔兔](https://weibo.com/geektutu)
+
+订阅方式：**watch** [geektutu/blog](https://github.com/geektutu/blog) ，每篇文章都能收到邮件通知，或通过 [RSS](https://geektutu.com/feed.xml) 订阅。
+
 ## 目录
 
 - 序言
