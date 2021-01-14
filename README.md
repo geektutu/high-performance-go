@@ -32,6 +32,7 @@
     - [控制协程的并发数量](https://geektutu.com/post/hpg-concurrency-control.html)
     - [sync.Pool 复用对象](https://geektutu.com/post/hpg-sync-pool.html)
     - [sync.Once 如何提升性能](https://geektutu.com/post/hpg-sync-once.html)
+    - [sync.Cond 条件变量](https://geektutu.com/post/hpg-sync-cond.html)
 
 - 第四章 编译优化
     - [减小编译体积](https://geektutu.com/post/hpg-reduce-size.html)
