@@ -23,7 +23,7 @@ func write(name string, c *sync.Cond) {
 	c.L.Lock()
 	done = true
 	c.L.Unlock()
-	log.Println(name, "weaks all")
+	log.Println(name, "wakes all")
 	c.Broadcast()
 }
 

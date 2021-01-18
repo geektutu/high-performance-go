@@ -91,7 +91,7 @@ Broadcast 唤醒所有等待条件变量 c 的 goroutine，无需锁保护。
 //
 // It is allowed but not required for the caller to hold c.L
 // during the call.
-func (c *Cond) Broadcast()
+func (c *Cond) Signal()
 ```
 
 Signal 只唤醒任意 1 个等待条件变量 c 的 goroutine，无需锁保护。
@@ -154,7 +154,7 @@ func write(name string, c *sync.Cond) {
 	c.L.Lock()
 	done = true
 	c.L.Unlock()
-	log.Println(name, "weaks all")
+	log.Println(name, "wakes all")
 	c.Broadcast()
 }
 
@@ -180,7 +180,7 @@ func main() {
 ```bash
 $ go run main.go
 2021/01/14 23:18:20 writer starts writing
-2021/01/14 23:18:21 writer weaks all
+2021/01/14 23:18:21 writer wakes all
 2021/01/14 23:18:21 reader2 starts reading
 2021/01/14 23:18:21 reader3 starts reading
 2021/01/14 23:18:21 reader1 starts reading
